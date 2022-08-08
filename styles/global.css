@@ -19,3 +19,17 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+.next-image {
+
+  border-radius: 7px;
+}
+
+a:focus { outline: thin dotted; }
+
+.link {
+  z-index: -5;
+}
+*:focus {
+  box-shadow: none;
+}

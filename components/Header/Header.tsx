@@ -1,80 +1,92 @@
-import { Flex, Heading, Spacer, Text } from "@chakra-ui/react";
-
+import { Flex, Heading, Spacer, Text, Menu, MenuItem, MenuList, MenuButton, chakra, Portal, Button, useDisclosure } from "@chakra-ui/react";
+import { Link as ChakraLink } from "@chakra-ui/react";
+import GiHamburgerMenu from "react-icons/gi"
 import { motion } from "framer-motion";
-import { Link } from 'react-scroll';
+import { Link }  from 'react-scroll';
+import NextLink from "next/link"
+import { url } from "inspector";
+import { HamburgerIcon } from "@chakra-ui/icons";
 const Header = () => {
 
-    const MotionFlex = motion(Flex);
+  const ChakraLink = chakra(Link)
+  const MotionFlex = motion(Flex);
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
-  
-      <MotionFlex 
-      display={["none", "none", "flex", "flex"]}
-   width="100%"
-   height="70px"
-   bg="#100F10"
-        as="nav"
-        id="logo"
-        zIndex="2"
-        flexDir="row"
-        paddingTop="13px"
-        position="fixed"
-        animate={{
 
-            opacity: [0.0, 1.0],
-            scale: 1.0,
-            transition: {
-              duration: 0.6,
-            },
-          }}
+    <MotionFlex
+      width="100%"
+      height="70px"
+      bg="#100F10"
+      as="nav"
+      id="logo"
+      zIndex="2"
+      flexDir="row"
+      paddingTop="13px"
+      position="fixed"
+
+      animate={{
+
+        opacity: [0.0, 1.0],
+        scale: 1.0,
+        transition: {
+          duration: 0.6,
+        },
+      }}
+    >
+      
+      <Spacer minWidth="30px" />
+
+
+      {/* logo */}
+      <Flex cursor="pointer" width="217px" zIndex={"1"}
       >
-        <Spacer minWidth="30px"/>
-
-
-        {/* logo */}
-        <Flex cursor="pointer" width="217px">
         <Link
-            to="presentation"
-            spy={true}
-            smooth={true}
-            offset={-60}
-            duration={500}
-            
+          
+          to="presentation"
+          spy={true}
+          smooth={true}
+          offset={-60}
+          duration={500}
+
+        >
+
+          <Flex
+            paddingTop="10px"
+            justifySelf="center"
+            height="36px"
+            cursor="pointer"
+            border="1x solid red"
+            borderBottom="1.7px solid #CECECE;"
+            width="15px"
           >
 
-        <Flex
-        paddingTop="10px"
-        justifySelf="center"
-        height="36px"
-        cursor="pointer"
-        border="1x solid red"
-        borderBottom="1.7px solid #CECECE;"
-        width="29px"
-        >
 
 
-          
-        <Heading
-          fontSize="1.5rem"
-          fontFamily="Inter"
-          color="whiteAlpha.800"
-          textAlign="center" 
-          cursor="pointer"
-        >
-          arthuramaralx
-        </Heading>
-        <Heading fontSize="1.5rem" color="red.700" fontFamily="Inter" cursor="pointer">
-          .dev
-        </Heading>
+            <Heading
+              fontSize="1.5rem"
+              fontFamily="Inter"
+              color="whiteAlpha.800"
+              textAlign="center"
+              cursor="pointer"
+            >
+              arthuramaralx
+            </Heading>
+            <Heading fontSize="1.5rem" color="red.700" fontFamily="Inter" cursor="pointer">
+              .dev
+            </Heading>
 
           </Flex>
         </Link>
-        </Flex>
-          <Spacer  minW="200px"/>
+      </Flex>
+      <Spacer minW="200px" zIndex={"0"} />
 
-       {/* links */}
+      {/* links */}
 
-          <Flex
+      <Flex
+        display={["none", "none", "flex", "flex"]}
+
         width="50%"
         justify="space-evenly"
         paddingTop="17px"
@@ -85,7 +97,7 @@ const Header = () => {
         <MotionFlex
           active="black"
           cursor="pointer"
- 
+
           whileHover={{
             scale: 1.1,
             textShadow: '0px 0px 6px rgb(255, 255, 255)',
@@ -173,11 +185,64 @@ const Header = () => {
         </MotionFlex>
 
         {/* fim dos links */}
-      </Flex>
-      <Spacer />
 
-      </MotionFlex>
- 
+      </Flex>
+      <Menu   >
+        <MenuButton
+      display={[ "block", "block","none", "none"]}
+
+          aria-label='Options'
+     >
+          <HamburgerIcon position="relative" bgColor="whiteAlpha.800" borderRadius="50px" padding="5px" width="30px" height="30px"/>
+          </MenuButton>
+       <MenuList borderRadius="3px" width="10px" bgColor="#191719" >
+      
+           
+
+         
+         
+          <ChakraLink 
+          
+          role={"menuitem"}
+            onClick={()=>{onClose}}
+            to="aboutme"
+            spy={true}
+            smooth={true}
+            offset={-60}
+            duration={500}
+            tabIndex={1}
+           width="300px"
+           height="300px"
+            position="relative"
+            >
+
+
+            <Text  color="whiteAlpha.800" paddingLeft="13px" width="90%" marginLeft="10px" align="left" fontWeight="500" borderBottom="2px solid #922b2b">
+              Sobre
+            </Text>
+       <MenuItem closeOnSelect width="120px" bg="white" bottom="3px"height="33px" position="absolute" opacity={0} />
+        
+            </ChakraLink> 
+         
+
+      
+
+        
+          <MenuItem opacity={0} command='⌘N'closeOnSelect>
+            New Window
+          </MenuItem>
+          <MenuItem  command='⌘⇧N'>
+            Open Closed Tab
+          </MenuItem>
+          <MenuItem  command='⌘O'>
+            Open File...
+          </MenuItem>
+        </MenuList>
+      </Menu>
+      <Spacer minWidth="10px"/>
+
+    </MotionFlex>
+
 
 
   );
