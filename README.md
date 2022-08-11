@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Olá! Sejam bem-vindos ao meu portfólio, um site que eu desenvolvi para externar o conhecimento em front-end que venho adquirindo a 1 ano.
+Criado em Next.js, ChakraUI e TypeScript, as ferramentas mas atuais de criação e estilização do framework React.
 
-## Getting Started
+## Iniciando a aplicação
 
-First, run the development server:
 
 ```bash
 npm run dev
